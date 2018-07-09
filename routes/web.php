@@ -14,21 +14,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/', 'HomeController@index');
 
 Route::get('/cookie/set', 'CookieController@setCookie');
 Route::get('/cookie/overwrite/{cookieName}/{cookieValue}', function ($cookieName, $cookieValue) {
     switch ($cookieName) {
         case 'source' :
-            echo("Source case");
+            echo("Case Source");
             setcookie("cookie[$cookieName]", "$cookieValue");
             break;
+
         case "campaign" :
-            echo("Source campaign");
+            echo("Case campaign");
             setcookie("cookie[$cookieName]", "$cookieValue");
             break;
 
         case "voucher" :
-            echo("Source voucher");
+            echo("Case voucher");
             setcookie("cookie[$cookieName]", "$cookieValue", time() + (86400 * 30), '/');
             break;
 
@@ -38,3 +40,5 @@ Route::get('/cookie/overwrite/{cookieName}/{cookieValue}', function ($cookieName
     }
 });
 Route::get('/cookie/get', 'CookieController@getCookie');
+Route::get('/pricing', 'PricingPageController@index');
+Route::get('/dummy', 'DummyPageController@index');
