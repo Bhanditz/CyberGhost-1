@@ -22,4 +22,27 @@ class CookieController extends Controller {
         }
     }
 
+    public function setSpecificCookie($cookieName, $cookieValue) {
+        switch ($cookieName) {
+            case 'source' :
+                echo("Case Source");
+                setcookie("cookie[$cookieName]", "$cookieValue");
+                break;
+
+            case "campaign" :
+                echo("Case campaign");
+                setcookie("cookie[$cookieName]", "$cookieValue");
+                break;
+
+            case "voucher" :
+                echo("Case voucher");
+                setcookie("cookie[$cookieName]", "$cookieValue", time() + (86400 * 30), '/');
+                break;
+
+            default :
+                dd("No cookie named " . $cookieName . " is present!");
+                break;
+        }
+    }
+
 }
